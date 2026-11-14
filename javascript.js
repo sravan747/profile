@@ -22,7 +22,7 @@ const loadingTimer = setInterval(() => {
                }, 800);
           }, 250);
      }
-}, 3);
+}, 50);
 
 /* =scroll re */
 
