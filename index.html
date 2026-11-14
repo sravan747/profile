@@ -359,11 +359,19 @@
                          <br>
                          <span>BUILD.</span>
                     </h2>
-                    <a href="mailto:sravanedubilli@gmail.com" class="contact-button">
+                    <a id="contact-btn" href="#" class="contact-button">
                          GET IN TOUCH
                          <span>↗</span>
                     </a>
                </div>
+
+               <script>
+                    const user = "sravanedubilli";
+                    const domain = "gmail.com";
+                    const btn = document.getElementById("contact-btn");
+                    btn.href = `mailto:${user}@${domain}`;
+               </script>
+
                <div class="contact-footer">
                     <div>
                          SRAVAN EDUBILLI
