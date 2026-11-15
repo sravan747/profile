@@ -22,7 +22,7 @@ const loadingTimer = setInterval(() => {
                }, 800);
           }, 250);
      }
-}, 50);
+}, 3);
 
 /* =scroll re */
 
@@ -258,56 +258,105 @@ document.addEventListener("mouseleave", () => {
 });
 
 const WORDS = "SRAVAN EDUBILLI DEVELOPER CODE BUILD EXPERIMENT LEARN".split(" ");
-const LIGHT_RADIUS = 110;   
+const LIGHT_RADIUS = 110;
+
+let wallSpans = [];
+let spanPositions = [];
+let mouseX = -9999;
+let mouseY = -9999;
+let frameQueued = false;
 
 function fillTextWall() {
      const wall = document.querySelector(".text-wall");
-     wall.innerHTML = "";
+     if (!wall) return;
 
-     const rowCount = Math.ceil(window.innerHeight / 14);
+     const fragment = document.createDocumentFragment();
+
+     const rowCount = Math.ceil(window.innerHeight / 18);
+     const wordsPerRow = 40;
+
      for (let r = 0; r < rowCount; r++) {
           const p = document.createElement("p");
-          for (let i = 0; i < 60; i++) {
+
+          for (let i = 0; i < wordsPerRow; i++) {
                const span = document.createElement("span");
-               span.textContent = WORDS[(r + i) % WORDS.length] + "\u00A0\u00A0\u00A0";
+
+               span.textContent =
+                    WORDS[(r + i) % WORDS.length] + "\u00A0\u00A0";
+
                p.appendChild(span);
           }
-          wall.appendChild(p);
+
+          fragment.appendChild(p);
+     }
+
+     wall.replaceChildren(fragment);
+
+     wallSpans = Array.from(wall.querySelectorAll("span"));
+
+     refreshSpotlightPositions();
+}
+
+function refreshSpotlightPositions() {
+     spanPositions = wallSpans.map(span => {
+          const rect = span.getBoundingClientRect();
+
+          return {
+               x: rect.left + rect.width / 2,
+               y: rect.top + rect.height / 2
+          };
+     });
+}
+
+function updateWords() {
+     frameQueued = false;
+
+     wallSpans.forEach((span, index) => {
+          const position = spanPositions[index];
+
+          const distance = Math.hypot(
+               position.x - mouseX,
+               position.y - mouseY
+          );
+
+          const shouldGlow = distance < LIGHT_RADIUS;
+          const isGlowing = span.classList.contains("lit");
+
+          if (shouldGlow !== isGlowing) {
+               span.classList.toggle("lit", shouldGlow);
+          }
+     });
+}
+
+function scheduleUpdate() {
+     if (!frameQueued) {
+          frameQueued = true;
+          requestAnimationFrame(updateWords);
      }
 }
 
 function initSpotlight() {
      fillTextWall();
-     window.addEventListener("resize", fillTextWall);
 
-     let mouseX = -9999;
-     let mouseY = -9999;
-     let frameQueued = false;
+     window.addEventListener("resize", () => {
+          fillTextWall();
+     });
 
-     function updateWords() {
-          frameQueued = false;
-          document.querySelectorAll(".text-wall span").forEach(span => {
-               const rect = span.getBoundingClientRect();
-               const cx = rect.left + rect.width / 2;
-               const cy = rect.top + rect.height / 2;
-               const distance = Math.hypot(cx - mouseX, cy - mouseY);
-               span.classList.toggle("lit", distance < LIGHT_RADIUS);
-          });
-     }
+     window.addEventListener("scroll", () => {
+          refreshSpotlightPositions();
+     }, { passive: true });
 
-     window.addEventListener("mousemove", (event) => {
+     window.addEventListener("mousemove", event => {
           mouseX = event.clientX;
           mouseY = event.clientY;
-          if (!frameQueued) {
-               frameQueued = true;
-               requestAnimationFrame(updateWords);
-          }
+
+          scheduleUpdate();
      });
 
      document.addEventListener("mouseleave", () => {
           mouseX = -9999;
           mouseY = -9999;
-          document.querySelectorAll(".text-wall span.lit")
-               .forEach(span => span.classList.remove("lit"));
+
+          scheduleUpdate();
      });
 }

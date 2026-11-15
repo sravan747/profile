@@ -424,121 +424,236 @@ a {
 
 
 
-/* about */
-
-.about-title {
-     line-height: .82;
-}
+/* ABOUT / PROFILE */
 
 #about {
      background: #f5f5f5;
      color: #000;
-     padding:
-          180px 8% 120px;
-}
-
-.about-title {
-     display: flex;
-     justify-content: flex-start;
-     align-items: flex-start;
-     flex-direction: column;
-     gap: 10px;
-     font-weight: 200;
-     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
-
-.reveal small {
-     font-weight: 100;
-     font-size: 14px;
-     color: #333333b5;
-}
-
-.boxes {
-     display: flex;
-     justify-content: center;
-     align-items: start;
-     letter-spacing: .6px;
-     flex-direction: column;
-     margin-top: 15px;
-     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
-
-.education {
-     margin: 0;
-     padding: 40px 0;
-}
-
-.ssc,
-.diploma,
-.btech {
-     padding: 10px 0;
-     border-bottom: 1px solid #33333391;
-}
-
-.education p {
-     font-size: 15px;
-     line-height: 1.6;
-}
-
-.education h3 {
-     font-size: 18px;
-     font-weight: 550;
-}
-
-.education b {
-     color: rgba(88, 150, 88, 0.466);
-}
-
-#current {
-     color: rgb(178, 178, 115);
-}
-
-.skills,
-.intrests {
-     width: 100%;
-     margin: 0;
-     padding: 25px 0;
+     padding: 120px 8% 100px;
      font-family: 'Gill Sans', 'Gill Sans MT',
           Calibri, 'Trebuchet MS', sans-serif;
-     letter-spacing: .6px;
 }
 
-.skills h2 {
-     font-size: 23px;
-     font-weight: 550;
+#about .section-number,
+#about .section-label {
+     font-size: 11px;
+     letter-spacing: 2px;
+     color: #777;
+}
+
+#about .section-label {
+     margin-top: 8px;
+}
+
+/* HEADER */
+
+.about-header {
+     display: grid;
+     grid-template-columns: 1fr 0.8fr;
+     gap: 60px;
+     align-items: end;
+     margin: 65px 0 85px;
+}
+
+.about-heading h2 {
+     font-size: clamp(45px, 7vw, 90px);
+     font-weight: 400;
+     letter-spacing: -4px;
+     line-height: 0.95;
+     margin: 0;
+}
+
+.about-heading p {
+     font-size: 14px;
+     color: #777;
+     margin-top: 22px;
+     letter-spacing: 0.4px;
+}
+
+.about-intro {
+     max-width: 440px;
+}
+
+.about-intro p {
+     font-size: 16px;
+     line-height: 1.8;
+     color: #555;
+     margin: 0 0 14px;
+}
+
+/* MAIN CONTENT */
+
+.about-content {
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+     gap: 80px;
+}
+
+.about-block {
+     min-width: 0;
+}
+
+.block-heading {
+     display: flex;
+     align-items: center;
+     gap: 15px;
+     padding-bottom: 20px;
+     border-bottom: 1px solid #222;
      margin-bottom: 15px;
 }
 
-.skill-box,
-.interest-box {
-     padding: 12px 0;
-     border-bottom: 1px solid #33333391;
+.block-heading span {
+     font-size: 11px;
+     color: #888;
 }
 
-.skill-box h3,
-.interest-box h3 {
-     font-size: 18px;
-     font-weight: 550;
-     margin-bottom: 5px;
-}
-
-.skill-box p,
-.interest-box p {
-     font-size: 15px;
-     line-height: 1.6;
-     color: #777;
+.block-heading h3 {
+     font-size: 22px;
+     font-weight: 500;
      margin: 0;
 }
 
-.interests {
-     width: 100%;
+/* EDUCATION */
+
+.education-item {
+     padding: 22px 0;
+     border-bottom: 1px solid #ccc;
 }
+
+.education-top {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     gap: 12px;
+     flex-wrap: wrap;
+}
+
+.education-item h4,
+.skill-item h4 {
+     font-size: 17px;
+     font-weight: 550;
+     margin: 0;
+}
+
+.education-item p {
+     font-size: 14px;
+     margin: 10px 0 4px;
+}
+
+.education-item small {
+     font-size: 12px;
+     color: #777;
+}
+
+.status {
+     font-size: 9px;
+     letter-spacing: 1px;
+}
+
+.completed {
+     color: #668866;
+}
+
+.current {
+     color: #9a873f;
+}
+
+/* TECHNICAL SKILLS */
+
+.skill-item {
+     padding: 22px 0;
+     border-bottom: 1px solid #ccc;
+}
+
+.skill-item p {
+     font-size: 14px;
+     line-height: 1.7;
+     color: #777;
+     margin: 10px 0 0;
+}
+
+/* FOOTER */
+
+.about-footer {
+     display: flex;
+     justify-content: space-between;
+     gap: 15px;
+     margin-top: 85px;
+     padding: 18px 0;
+     border-top: 1px solid #ccc;
+     font-size: 10px;
+     letter-spacing: 1.5px;
+     color: #777;
+}
+
+/* MARQUEE */
+
+.about-marquee {
+     overflow: hidden;
+     white-space: nowrap;
+     margin-top: 35px;
+}
+
+.about-marquee div {
+     font-size: clamp(45px, 10vw, 120px);
+     font-weight: 600;
+     letter-spacing: -4px;
+     background: linear-gradient(
+          #535151,
+          rgb(220, 211, 211),
+          rgb(244, 242, 242)
+     );
+     color: transparent;
+     background-clip: text;
+}
+
+/* RESPONSIVE */
 
 @media (max-width: 768px) {
 
-     .skills,
-     .intrests {
-          padding: 15px 0;
+     #about {
+          padding: 110px 6% 70px;
+     }
+
+     .about-header {
+          grid-template-columns: 1fr;
+          gap: 25px;
+          margin: 50px 0 55px;
+     }
+
+     .about-heading h2 {
+          font-size: 55px;
+          letter-spacing: -2px;
+     }
+
+     .about-content {
+          grid-template-columns: 1fr;
+          gap: 55px;
+     }
+
+     .about-footer {
+          margin-top: 55px;
+          font-size: 8px;
+     }
+
+     .about-marquee div {
+          font-size: 45px;
+     }
+}
+
+@media (max-width: 400px) {
+
+     .about-heading h2 {
+          font-size: 44px;
+     }
+
+     .education-item h4,
+     .skill-item h4 {
+          font-size: 15px;
+     }
+
+     .education-top {
+          align-items: flex-start;
      }
 }
 
