@@ -22,7 +22,7 @@ const loadingTimer = setInterval(() => {
                }, 800);
           }, 250);
      }
-}, 3);
+}, 30);
 
 /* =scroll re */
 
@@ -207,46 +207,8 @@ function initScrollEffects() {
      });
 }
 
-/* =========================================================
-   PROJECT MOUSE MOVEMENT
-========================================================= */
 
-document.addEventListener("mousemove", (event) => {
-     const projects =
-          document.querySelectorAll(".project");
-
-     projects.forEach(project => {
-          const visual =
-               project.querySelector(".project-visual");
-
-          if (!visual) return;
-
-          const rect =
-               project.getBoundingClientRect();
-
-          if (
-               event.clientY >= rect.top &&
-               event.clientY <= rect.bottom
-          ) {
-               const x =
-                    (event.clientX -
-                         window.innerWidth / 2) /
-                    35;
-
-               const y =
-                    (event.clientY -
-                         window.innerHeight / 2) /
-                    35;
-
-               visual.style.transform =
-                    `translate(${x}px, ${y}px)`;
-          }
-     });
-});
-
-/* =========================================================
-   SMOOTH PROJECT VISUAL RESET
-========================================================= */
+/*  smooth */
 
 document.addEventListener("mouseleave", () => {
      document

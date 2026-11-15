@@ -599,8 +599,8 @@ a {
      font-weight: 600;
      letter-spacing: -4px;
      background: linear-gradient(
-          #535151,
-          rgb(220, 211, 211),
+          #dfd9d9,
+          rgb(247, 242, 242),
           rgb(244, 242, 242)
      );
      color: transparent;
